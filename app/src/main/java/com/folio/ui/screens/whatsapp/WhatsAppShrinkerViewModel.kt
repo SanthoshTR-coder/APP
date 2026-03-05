@@ -11,9 +11,9 @@ import com.folio.domain.model.DocumentFile
 import com.folio.domain.model.Operation
 import com.folio.domain.model.OperationProgress
 import com.folio.domain.model.OperationResult
-import com.folio.domain.usecase.smart.SizeTarget
-import com.folio.domain.usecase.smart.ShrinkResult
 import com.folio.domain.usecase.smart.WhatsAppShrinkerUseCase
+import com.folio.domain.usecase.smart.WhatsAppShrinkerUseCase.ShrinkResult
+import com.folio.domain.usecase.smart.WhatsAppShrinkerUseCase.SizeTarget
 import com.folio.util.OperationCleanup
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -60,13 +60,13 @@ class WhatsAppShrinkerViewModel @Inject constructor(
     fun shrink() {
         val file = _selectedFile.value ?: return
 
-        val targetBytes = if (_selectedTarget.value == SizeTarget.CUSTOM) {
-            (_customTargetMb.value * 1_048_576).toLong()
+        val customMb = if (_selectedTarget.value == SizeTarget.CUSTOM) {
+            _customTargetMb.value.toInt()
         } else null
 
         viewModelScope.launch {
             _uiState.value = WhatsAppUiState.Processing
-            when (val result = whatsAppShrinkerUseCase.execute(file.uri, _selectedTarget.value, targetBytes)) {
+            when (val result = whatsAppShrinkerUseCase.execute(file.uri, _selectedTarget.value, customMb)) {
                 is OperationResult.Success -> {
                     val shrinkResult = result.data
                     _uiState.value = WhatsAppUiState.Success(shrinkResult)

@@ -60,11 +60,8 @@ class PptToPdfUseCase @Inject constructor(
 
             val outputTempFile = File(context.cacheDir, outputFileName)
 
-            // Use landscape A4 for slides
-            val pageSize = PageSize(
-                pptx.pageSize.width.toFloat() * 72f / 914400f,
-                pptx.pageSize.height.toFloat() * 72f / 914400f
-            ).takeIf { it.width > 0 && it.height > 0 } ?: PageSize.A4.rotate()
+            // Use landscape A4 for slides (avoids java.awt.Dimension from pptx.pageSize on Android)
+            val pageSize = PageSize.A4.rotate()
 
             val writer = PdfWriter(outputTempFile)
             val pdfDoc = PdfDocument(writer)

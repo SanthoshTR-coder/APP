@@ -7,10 +7,8 @@ import android.net.Uri
 import com.folio.domain.model.OperationProgress
 import com.folio.domain.model.OperationResult
 import com.itextpdf.io.image.ImageDataFactory
-import com.itextpdf.kernel.colors.ColorConstants
 import com.itextpdf.kernel.colors.DeviceRgb
 import com.itextpdf.kernel.font.PdfFontFactory
-import com.itextpdf.kernel.geom.AffineTransform
 import com.itextpdf.kernel.pdf.*
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas
 import com.itextpdf.kernel.pdf.extgstate.PdfExtGState
@@ -113,11 +111,9 @@ class WatermarkPdfUseCase @Inject constructor(
         canvas.setFontAndSize(font, config.fontSize)
         canvas.setFillColor(color)
         canvas.setTextMatrix(
-            AffineTransform(
-                cos(angleRad).toFloat(), sin(angleRad).toFloat(),
-                -sin(angleRad).toFloat(), cos(angleRad).toFloat(),
-                centerX, centerY
-            )
+            cos(angleRad).toFloat(), sin(angleRad).toFloat(),
+            (-sin(angleRad)).toFloat(), cos(angleRad).toFloat(),
+            centerX, centerY
         )
         // Center the text approximately
         val textWidth = font.getWidth(config.text, config.fontSize)

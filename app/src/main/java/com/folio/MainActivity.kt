@@ -44,11 +44,11 @@ class MainActivity : ComponentActivity() {
         // Check if onboarding has been completed
         var showOnboarding by mutableStateOf<Boolean?>(null)
         lifecycleScope.launch {
-            showOnboarding = !preferencesManager.onboardingCompleted.first()
+            showOnboarding = !preferencesManager.onboardingCompletedFlow.first()
         }
 
         setContent {
-            val darkMode by preferencesManager.darkMode.collectAsState(initial = 0)
+            val darkMode by preferencesManager.darkModeFlow.collectAsState(initial = 0)
 
             FolioTheme(darkThemeOverride = darkMode) {
                 Surface(

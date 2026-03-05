@@ -113,7 +113,7 @@ fun ExcelToPdfScreen(
                                 Spacer(Modifier.width(12.dp))
                                 Column(Modifier.weight(1f)) {
                                     Text(selectedFile!!.name, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium, maxLines = 1)
-                                    Text("${selectedFile!!.formattedSize} • ${sheetNames.size} sheet${if (sheetNames.size != 1) "s" else ""}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                                    Text("${selectedFile!!.sizeFormatted} • ${sheetNames.size} sheet${if (sheetNames.size != 1) "s" else ""}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                                 }
                                 IconButton(onClick = { xlsPicker.launch(xlsMimes) }) { Icon(Icons.Default.SwapHoriz, "Change") }
                             }

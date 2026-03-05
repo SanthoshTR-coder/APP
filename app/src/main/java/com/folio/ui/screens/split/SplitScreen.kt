@@ -2,6 +2,7 @@ package com.folio.ui.screens.split
 
 import android.content.Intent
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -355,7 +356,7 @@ private fun SplitModeSelector(
                 onClick = { onModeSelected(mode) },
                 shape = RoundedCornerShape(Radius.md),
                 color = bgColor,
-                border = if (isSelected) ButtonDefaults.outlinedButtonBorder.copy(width = 1.5.dp)
+                border = if (isSelected) BorderStroke(1.5.dp, SplitAccent)
                 else null,
                 modifier = Modifier.weight(1f)
             ) {

@@ -61,14 +61,8 @@ class PdfToPptUseCase @Inject constructor(
 
                 val slide = pptx.createSlide(layout)
 
-                // Add text box to slide
+                // Add text box to slide (using default positioning)
                 val textBox = slide.createTextBox()
-                // Position: slight margin from edges (in EMU: 1 inch = 914400)
-                textBox.anchor = java.awt.geom.Rectangle2D.Double(
-                    50.0, 50.0,
-                    pptx.pageSize.width.toDouble() - 100.0,
-                    pptx.pageSize.height.toDouble() - 100.0
-                )
 
                 if (text.isNotBlank()) {
                     val paragraph = textBox.addNewTextParagraph()

@@ -1,5 +1,6 @@
 package com.folio.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -62,9 +63,7 @@ fun FolioOutlinedButton(
             contentColor = accentColor,
             disabledContentColor = accentColor.copy(alpha = 0.3f)
         ),
-        border = ButtonDefaults.outlinedButtonBorder.copy(
-            width = 1.5.dp,
-        )
+        border = BorderStroke(1.5.dp, accentColor)
     ) {
         Text(
             text = text,

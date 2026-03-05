@@ -10,7 +10,7 @@ import com.folio.domain.model.DocumentFile
 import com.folio.domain.model.Operation
 import com.folio.domain.model.OperationResult
 import com.folio.domain.usecase.smart.HealthCheckUseCase
-import com.folio.domain.usecase.smart.HealthResult
+import com.folio.domain.usecase.smart.HealthCheckUseCase.HealthResult
 import com.folio.util.OperationCleanup
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -49,7 +49,7 @@ class HealthCheckViewModel @Inject constructor(
 
         viewModelScope.launch {
             _uiState.value = HealthCheckUiState.Scanning
-            when (val result = healthCheckUseCase.execute(file.uri)) {
+            when (val result = healthCheckUseCase.analyze(file.uri, file.name, file.size)) {
                 is OperationResult.Success -> {
                     _uiState.value = HealthCheckUiState.Result(result.data)
                     historyRepository.logOperation(
@@ -83,7 +83,7 @@ class HealthCheckViewModel @Inject constructor(
             appendLine()
             if (r.issues.isNotEmpty()) {
                 appendLine("--- Issues ---")
-                r.issues.forEach { appendLine("[${it.severity}] ${it.message}") }
+                r.issues.forEach { appendLine("[${it.severity}] ${it.title}: ${it.description}") }
             }
             if (r.warnings.isNotEmpty()) {
                 appendLine("--- Warnings ---")

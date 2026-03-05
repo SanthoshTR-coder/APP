@@ -9,6 +9,7 @@ import com.itextpdf.kernel.geom.PageSize
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
+import com.itextpdf.layout.element.Cell
 import com.itextpdf.layout.element.Paragraph
 import com.itextpdf.layout.element.Table
 import com.itextpdf.layout.properties.UnitValue
@@ -106,7 +107,7 @@ class WordToPdfUseCase @Inject constructor(
                 for (row in table.rows) {
                     for (cell in row.tableCells) {
                         val cellText = cell.text
-                        pdfTable.addCell(Paragraph(cellText))
+                        pdfTable.addCell(Cell().add(Paragraph(cellText)))
                     }
                 }
 

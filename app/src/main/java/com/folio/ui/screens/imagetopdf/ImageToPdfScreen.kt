@@ -288,7 +288,7 @@ fun ImageToPdfScreen(
                                                 overflow = TextOverflow.Ellipsis
                                             )
                                             Text(
-                                                doc.formattedSize,
+                                                doc.sizeFormatted,
                                                 style = MaterialTheme.typography.bodySmall,
                                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                                             )

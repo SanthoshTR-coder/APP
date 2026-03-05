@@ -98,7 +98,7 @@ fun PptToPdfScreen(
                                 Spacer(Modifier.width(12.dp))
                                 Column(Modifier.weight(1f)) {
                                     Text(selectedFile!!.name, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium, maxLines = 1)
-                                    Text(selectedFile!!.formattedSize, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                                    Text(selectedFile!!.sizeFormatted, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                                 }
                                 IconButton(onClick = { pptPicker.launch(pptMimes) }) { Icon(Icons.Default.SwapHoriz, "Change") }
                             }

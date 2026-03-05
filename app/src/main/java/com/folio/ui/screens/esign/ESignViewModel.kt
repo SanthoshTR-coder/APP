@@ -14,9 +14,9 @@ import com.folio.domain.model.DocumentFile
 import com.folio.domain.model.Operation
 import com.folio.domain.model.OperationProgress
 import com.folio.domain.model.OperationResult
-import com.folio.domain.usecase.security.DateStamp
 import com.folio.domain.usecase.security.ESignPdfUseCase
-import com.folio.domain.usecase.security.SignaturePlacement
+import com.folio.domain.usecase.security.ESignPdfUseCase.DateStamp
+import com.folio.domain.usecase.security.ESignPdfUseCase.SignaturePlacement
 import com.folio.util.OperationCleanup
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -142,7 +142,7 @@ class ESignViewModel @Inject constructor(
 
         viewModelScope.launch {
             _uiState.value = ESignUiState.Processing
-            when (val result = eSignPdfUseCase.execute(file.uri, placement, dateStamp)) {
+            when (val result = eSignPdfUseCase.execute(file.uri, listOf(placement), listOfNotNull(dateStamp))) {
                 is OperationResult.Success -> {
                     val output = result.data
                     _uiState.value = ESignUiState.Success(output, output.length(), file.size)

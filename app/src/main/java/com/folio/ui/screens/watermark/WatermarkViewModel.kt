@@ -12,8 +12,8 @@ import com.folio.domain.model.DocumentFile
 import com.folio.domain.model.Operation
 import com.folio.domain.model.OperationProgress
 import com.folio.domain.model.OperationResult
-import com.folio.domain.usecase.security.WatermarkConfig
 import com.folio.domain.usecase.security.WatermarkPdfUseCase
+import com.folio.domain.usecase.security.WatermarkPdfUseCase.WatermarkConfig
 import com.folio.util.OperationCleanup
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

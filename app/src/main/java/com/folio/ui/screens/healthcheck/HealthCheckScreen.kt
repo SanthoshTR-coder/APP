@@ -23,8 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.folio.domain.usecase.smart.HealthResult
-import com.folio.domain.usecase.smart.Severity
+import com.folio.domain.usecase.smart.HealthCheckUseCase.HealthResult
+import com.folio.domain.usecase.smart.HealthCheckUseCase.Severity
 import com.folio.ui.components.*
 import com.folio.ui.theme.FolioTheme
 import com.folio.util.FileUtil
@@ -222,7 +222,7 @@ private fun HealthReportCard(
             ReportRow("Pages", result.pageCount.toString())
             ReportRow("PDF Version", result.pdfVersion)
             ReportRow("Encrypted", if (result.isEncrypted) "Yes 🔒" else "No")
-            ReportRow("Content Type", result.contentType)
+            ReportRow("Content Type", result.contentType.name)
             ReportRow("Has Text", if (result.hasText) "Yes" else "No")
             ReportRow("Has Images", if (result.hasImages) "Yes" else "No")
 

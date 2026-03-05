@@ -3,6 +3,7 @@ package com.folio.ui.screens.compress
 import android.content.Intent
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -303,7 +304,7 @@ private fun CompressionLevelCard(
         onClick = onSelect,
         shape = RoundedCornerShape(Radius.md),
         color = bgColor,
-        border = if (isSelected) ButtonDefaults.outlinedButtonBorder.copy(width = 2.dp)
+        border = if (isSelected) BorderStroke(2.dp, CompressAccent)
         else null,
         modifier = Modifier
             .fillMaxWidth()

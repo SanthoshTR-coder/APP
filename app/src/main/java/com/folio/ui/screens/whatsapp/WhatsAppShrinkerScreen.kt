@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.folio.domain.usecase.smart.SizeTarget
+import com.folio.domain.usecase.smart.WhatsAppShrinkerUseCase.SizeTarget
 import com.folio.ui.components.*
 import com.folio.ui.theme.FolioTheme
 import com.folio.util.FileUtil

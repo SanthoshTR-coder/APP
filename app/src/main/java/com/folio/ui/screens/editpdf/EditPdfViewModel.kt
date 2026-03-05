@@ -12,7 +12,11 @@ import com.folio.domain.model.DocumentFile
 import com.folio.domain.model.Operation
 import com.folio.domain.model.OperationProgress
 import com.folio.domain.model.OperationResult
-import com.folio.domain.usecase.edit.*
+import com.folio.domain.usecase.edit.EditPdfUseCase
+import com.folio.domain.usecase.edit.EditPdfUseCase.EditOperations
+import com.folio.domain.usecase.edit.EditPdfUseCase.HighlightEdit
+import com.folio.domain.usecase.edit.EditPdfUseCase.ImageEdit
+import com.folio.domain.usecase.edit.EditPdfUseCase.TextEdit
 import com.folio.util.OperationCleanup
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -91,7 +95,7 @@ class EditPdfViewModel @Inject constructor(
     fun addTextEdit(x: Float = 50f, y: Float = 700f) {
         if (_pendingText.value.isBlank()) return
         val edit = TextEdit(
-            page = _currentPage.value,
+            pageNumber = _currentPage.value,
             x = x,
             y = y,
             text = _pendingText.value,
@@ -104,7 +108,7 @@ class EditPdfViewModel @Inject constructor(
 
     fun addImageEdit(bitmap: Bitmap, x: Float = 50f, y: Float = 500f) {
         val edit = ImageEdit(
-            page = _currentPage.value,
+            pageNumber = _currentPage.value,
             x = x,
             y = y,
             width = 150f,
@@ -116,7 +120,7 @@ class EditPdfViewModel @Inject constructor(
 
     fun addHighlight(x: Float = 50f, y: Float = 700f, width: Float = 200f, height: Float = 20f) {
         val highlight = HighlightEdit(
-            page = _currentPage.value,
+            pageNumber = _currentPage.value,
             x = x,
             y = y,
             width = width,

@@ -133,7 +133,7 @@ fun PdfToImageScreen(
                                 Spacer(Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(selectedFile!!.name, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium, maxLines = 1)
-                                    Text("${selectedFile!!.formattedSize} • ${selectedFile!!.pageCount} pages", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                                    Text("${selectedFile!!.sizeFormatted} • ${selectedFile!!.pageCount} pages", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                                 }
                                 IconButton(onClick = { pdfPicker.launch(arrayOf("application/pdf")) }) {
                                     Icon(Icons.Default.SwapHoriz, "Change file")

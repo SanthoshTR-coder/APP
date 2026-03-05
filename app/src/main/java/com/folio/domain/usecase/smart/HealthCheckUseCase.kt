@@ -56,7 +56,7 @@ class HealthCheckUseCase @Inject constructor(
                 val warnings = mutableListOf<String>()
 
                 val pageCount = pdfDoc.numberOfPages
-                val pdfVersion = "PDF ${reader.pdfAConformanceLevel?.part ?: pdfDoc.pdfVersion ?: "Unknown"}"
+                val pdfVersion = "PDF ${pdfDoc.pdfVersion ?: "Unknown"}"
 
                 // Check for encryption
                 val isEncrypted = reader.isEncrypted
