@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Folio "F" icon foreground with document shape -->
+    <!-- Document page shape -->
+    <path
+        android:fillColor="#5B6ABF"
+        android:pathData="M30,24 L66,24 L78,36 L78,84 Q78,87 75,87 L33,87 Q30,87 30,84 Z"
+        android:strokeWidth="0" />
+
+    <!-- Dog-ear fold -->
+    <path
+        android:fillColor="#4A57A0"
+        android:pathData="M66,24 L66,36 L78,36 Z"
+        android:strokeWidth="0" />
+
+    <!-- Letter F -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,44 L66,44 L66,50 L48,50 L48,58 L62,58 L62,64 L48,64 L48,76 L42,76 Z"
+        android:strokeWidth="0" />
+
+</vector>
