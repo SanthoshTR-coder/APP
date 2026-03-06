@@ -1,6 +1,7 @@
 package com.folio.data.repository
 
 import android.app.Activity
+import android.util.Log
 import com.android.billingclient.api.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +16,7 @@ import javax.inject.Singleton
 class BillingRepository @Inject constructor() {
 
     companion object {
+        private const val TAG = "BillingRepository"
         const val REMOVE_ADS_PRODUCT_ID = "remove_ads"
     }
 
@@ -32,22 +34,31 @@ class BillingRepository @Inject constructor() {
     }
 
     fun initialize(activity: Activity) {
-        billingClient = BillingClient.newBuilder(activity)
-            .setListener(purchasesUpdatedListener)
-            .enablePendingPurchases()
-            .build()
+        try {
+            billingClient = BillingClient.newBuilder(activity)
+                .setListener(purchasesUpdatedListener)
+                .enablePendingPurchases(
+                    PendingPurchasesParams.newBuilder()
+                        .enableOneTimeProducts()
+                        .build()
+                )
+                .build()
 
-        billingClient?.startConnection(object : BillingClientStateListener {
-            override fun onBillingSetupFinished(billingResult: BillingResult) {
-                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    checkExistingPurchases()
+            billingClient?.startConnection(object : BillingClientStateListener {
+                override fun onBillingSetupFinished(billingResult: BillingResult) {
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                        checkExistingPurchases()
+                    }
                 }
-            }
 
-            override fun onBillingServiceDisconnected() {
-                // Retry connection on next operation
-            }
-        })
+                override fun onBillingServiceDisconnected() {
+                    // Retry connection on next operation
+                    Log.d(TAG, "Billing service disconnected")
+                }
+            })
+        } catch (e: Exception) {
+            Log.e(TAG, "Billing initialization failed", e)
+        }
     }
 
     private fun checkExistingPurchases() {

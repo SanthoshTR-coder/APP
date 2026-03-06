@@ -100,6 +100,7 @@ dependencies {
     // Core Android
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.activity:activity-compose:1.9.0")
+    implementation("com.google.android.material:material:1.12.0")
 
     // Compose BOM — pins all Compose versions
     val composeBom = platform("androidx.compose:compose-bom:2024.06.00")

@@ -1,6 +1,7 @@
 package com.folio
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -15,7 +16,6 @@ import com.folio.data.repository.BillingRepository
 import com.folio.ui.navigation.AppNavGraph
 import com.folio.ui.theme.FolioTheme
 import com.folio.util.AdManager
-import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -32,19 +32,36 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
-        // Initialize AdMob SDK
-        MobileAds.initialize(this) {}
-        AdManager.preloadInterstitial(this)
+        try {
+            enableEdgeToEdge()
+        } catch (e: Exception) {
+            Log.e("MainActivity", "enableEdgeToEdge failed", e)
+        }
+
+        // Preload interstitial ad (MobileAds already initialized in FolioApp)
+        try {
+            AdManager.preloadInterstitial(this)
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Ad preload failed", e)
+        }
 
         // Initialize billing
-        billingRepository.initialize(this)
+        try {
+            billingRepository.initialize(this)
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Billing initialization failed", e)
+        }
 
         // Check if onboarding has been completed
         var showOnboarding by mutableStateOf<Boolean?>(null)
         lifecycleScope.launch {
-            showOnboarding = !preferencesManager.onboardingCompletedFlow.first()
+            try {
+                showOnboarding = !preferencesManager.onboardingCompletedFlow.first()
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Preferences read failed", e)
+                showOnboarding = true // Default to showing onboarding
+            }
         }
 
         setContent {
@@ -67,6 +84,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        billingRepository.cleanup()
+        try {
+            billingRepository.cleanup()
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Billing cleanup failed", e)
+        }
     }
 }
