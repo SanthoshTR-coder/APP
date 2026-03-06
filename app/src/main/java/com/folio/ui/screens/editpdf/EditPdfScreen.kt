@@ -304,7 +304,7 @@ private fun TextEditPanel(
                     Icon(Icons.Default.TextFields, contentDescription = null, tint = accentColor, modifier = Modifier.size(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text("\"${edit.text}\"", style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Medium)
-                        Text("Page ${edit.page} · ${edit.fontSize.toInt()}pt", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text("Page ${edit.pageNumber} · ${edit.fontSize.toInt()}pt", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     IconButton(onClick = { onRemove(index) }, modifier = Modifier.size(24.dp)) {
                         Icon(Icons.Default.Close, contentDescription = "Remove", modifier = Modifier.size(16.dp))
@@ -370,7 +370,7 @@ private fun HighlightEditPanel(
                 Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.Highlight, contentDescription = null, tint = Color(0xFFF9A825), modifier = Modifier.size(16.dp))
                     Spacer(Modifier.width(8.dp))
-                    Text("Highlight on page ${hl.page}", style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
+                    Text("Highlight on page ${hl.pageNumber}", style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
                     IconButton(onClick = { onRemove(index) }, modifier = Modifier.size(24.dp)) {
                         Icon(Icons.Default.Close, contentDescription = "Remove", modifier = Modifier.size(16.dp))
                     }
