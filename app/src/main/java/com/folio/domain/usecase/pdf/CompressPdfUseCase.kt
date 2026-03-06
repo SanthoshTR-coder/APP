@@ -115,7 +115,7 @@ class CompressPdfUseCase @Inject constructor(
             }
 
             val reader = PdfReader(tempFile)
-            val writer = PdfWriter(outputTempFile, writerProperties)
+            val writer = PdfWriter(java.io.FileOutputStream(outputTempFile), writerProperties)
             val pdfDoc = PdfDocument(reader, writer)
 
             _progress.value = OperationProgress(

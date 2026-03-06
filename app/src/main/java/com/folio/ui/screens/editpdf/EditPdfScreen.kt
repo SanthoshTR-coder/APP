@@ -252,7 +252,7 @@ private fun TextEditPanel(
     onTextChange: (String) -> Unit,
     onFontSizeChange: (Float) -> Unit,
     onAdd: () -> Unit,
-    textEdits: List<com.folio.domain.usecase.edit.TextEdit>,
+    textEdits: List<com.folio.domain.usecase.edit.EditPdfUseCase.TextEdit>,
     onRemove: (Int) -> Unit,
     accentColor: Color
 ) {
@@ -341,7 +341,7 @@ private fun ImageEditPanel(accentColor: Color) {
 
 @Composable
 private fun HighlightEditPanel(
-    highlights: List<com.folio.domain.usecase.edit.HighlightEdit>,
+    highlights: List<com.folio.domain.usecase.edit.EditPdfUseCase.HighlightEdit>,
     onAdd: () -> Unit,
     onRemove: (Int) -> Unit,
     accentColor: Color,
