@@ -249,7 +249,7 @@ private fun HealthReportCard(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(icon, contentDescription = null, tint = color, modifier = Modifier.size(18.dp))
-                        Text(issue.message, style = MaterialTheme.typography.bodySmall)
+                        Text("${issue.title}: ${issue.description}", style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }

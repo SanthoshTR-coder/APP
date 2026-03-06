@@ -103,7 +103,7 @@ fun PrivacyPolicyScreen(
             )
 
             PrivacySection(
-                icon = Icons.Default.Ads,
+                icon = Icons.Default.Campaign,
                 title = "Advertising",
                 content = "Folio uses Google AdMob to display banner and interstitial ads. Google may collect anonymous device data as described in their privacy policy. You can remove all ads with a one-time in-app purchase."
             )

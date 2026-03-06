@@ -2,7 +2,6 @@ package com.folio.data.repository
 
 import android.app.Activity
 import com.android.billingclient.api.*
-import com.android.billingclient.api.PendingPurchasesParams
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,11 +34,7 @@ class BillingRepository @Inject constructor() {
     fun initialize(activity: Activity) {
         billingClient = BillingClient.newBuilder(activity)
             .setListener(purchasesUpdatedListener)
-            .enablePendingPurchases(
-                PendingPurchasesParams.newBuilder()
-                    .enableOneTimeProducts()
-                    .build()
-            )
+            .enablePendingPurchases()
             .build()
 
         billingClient?.startConnection(object : BillingClientStateListener {
