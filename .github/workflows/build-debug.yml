@@ -25,13 +25,11 @@ jobs:
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > local.properties
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Generate Gradle Wrapper
-        run: |
-          # Download and use Gradle to generate wrapper files
-          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip -O /tmp/gradle.zip
-          unzip -q /tmp/gradle.zip -d /tmp
-          /tmp/gradle-8.7/bin/gradle wrapper --gradle-version 8.7
-          chmod +x gradlew
+        run: gradle wrapper --gradle-version 8.7
 
       - name: Cache Gradle packages
         uses: actions/cache@v4
