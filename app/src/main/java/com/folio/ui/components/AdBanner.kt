@@ -29,24 +29,22 @@ fun AdBanner(
     if (adsRemoved) return
 
     Column(modifier = modifier.fillMaxWidth()) {
-        try {
-            AndroidView(
-                factory = { context ->
-                    try {
-                        AdView(context).apply {
-                            setAdSize(AdSize.BANNER)
-                            adUnitId = AdManager.BANNER_AD_UNIT_ID
-                            loadAd(AdRequest.Builder().build())
-                        }
-                    } catch (e: Exception) {
-                        // If AdView fails to create, return an empty view
-                        android.view.View(context)
+        AndroidView(
+            factory = { context ->
+                try {
+                    AdView(context).apply {
+                        setAdSize(AdSize.BANNER)
+                        adUnitId = AdManager.BANNER_AD_UNIT_ID
+                        loadAd(AdRequest.Builder().build())
                     }
-                },
-                modifier = Modifier.fillMaxWidth()
-            )
-        } catch (_: Exception) {
-            // Silently fail — ad is optional
-        }
+                } catch (e: Exception) {
+                    // If AdView fails to create, return an empty view
+                    android.view.View(context)
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
     }
 }
