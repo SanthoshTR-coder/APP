@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class DocumentRepository @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val recentFileDao: RecentFileDao
 ) {
 

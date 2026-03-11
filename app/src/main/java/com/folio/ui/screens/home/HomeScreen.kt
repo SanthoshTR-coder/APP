@@ -63,6 +63,7 @@ fun HomeScreen(
     val scrollState = rememberScrollState()
 
     Scaffold(
+        modifier = Modifier.statusBarsPadding(),
         containerColor = FolioTheme.colors.background,
         bottomBar = {
             AdBanner(adsRemoved = adsRemoved)
@@ -73,7 +74,6 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(scrollState)
-                .statusBarsPadding()
         ) {
             // ─── Greeting Header ─────────────────────
             GreetingHeader(
@@ -306,23 +306,25 @@ private fun ToolSectionGrid(
                 rowTools.forEachIndexed { colIndex, tool ->
                     val globalIndex = startIndex + (rowIndex * 2) + colIndex
 
-                    AnimatedVisibility(
-                        visible = globalIndex in visibleCards,
-                        enter = slideInVertically(
-                            initialOffsetY = { it / 3 },
-                            animationSpec = tween(300, easing = EaseOutCubic)
-                        ) + fadeIn(animationSpec = tween(200)),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        FolioToolCard(
-                            title = tool.title,
-                            description = tool.description,
-                            icon = tool.icon,
-                            pastelColor = tool.pastelColor,
-                            accentColor = tool.accentColor,
-                            onClick = { onToolClick(tool.route) },
+                    Box(modifier = Modifier.weight(1f)) {
+                        AnimatedVisibility(
+                            visible = globalIndex in visibleCards,
+                            enter = slideInVertically(
+                                initialOffsetY = { it / 3 },
+                                animationSpec = tween(300, easing = EaseOutCubic)
+                            ) + fadeIn(animationSpec = tween(200)),
                             modifier = Modifier.fillMaxWidth()
-                        )
+                        ) {
+                            FolioToolCard(
+                                title = tool.title,
+                                description = tool.description,
+                                icon = tool.icon,
+                                pastelColor = tool.pastelColor,
+                                accentColor = tool.accentColor,
+                                onClick = { onToolClick(tool.route) },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
                     }
                 }
 

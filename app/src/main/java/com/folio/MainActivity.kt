@@ -35,22 +35,22 @@ class MainActivity : AppCompatActivity() {
 
         try {
             enableEdgeToEdge()
-        } catch (e: Exception) {
-            Log.e("MainActivity", "enableEdgeToEdge failed", e)
+        } catch (t: Throwable) {
+            Log.e("MainActivity", "enableEdgeToEdge failed", t)
         }
 
         // Preload interstitial ad (MobileAds already initialized in FolioApp)
         try {
             AdManager.preloadInterstitial(this)
-        } catch (e: Exception) {
-            Log.e("MainActivity", "Ad preload failed", e)
+        } catch (t: Throwable) {
+            Log.e("MainActivity", "Ad preload failed", t)
         }
 
         // Initialize billing
         try {
             billingRepository.initialize(this)
-        } catch (e: Exception) {
-            Log.e("MainActivity", "Billing initialization failed", e)
+        } catch (t: Throwable) {
+            Log.e("MainActivity", "Billing initialization failed", t)
         }
 
         // Check if onboarding has been completed
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 showOnboarding = !preferencesManager.onboardingCompletedFlow.first()
-            } catch (e: Exception) {
-                Log.e("MainActivity", "Preferences read failed", e)
+            } catch (t: Throwable) {
+                Log.e("MainActivity", "Preferences read failed", t)
                 showOnboarding = true // Default to showing onboarding
             }
         }
@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         try {
             billingRepository.cleanup()
-        } catch (e: Exception) {
-            Log.e("MainActivity", "Billing cleanup failed", e)
+        } catch (t: Throwable) {
+            Log.e("MainActivity", "Billing cleanup failed", t)
         }
     }
 }

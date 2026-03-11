@@ -37,7 +37,7 @@ fun AdBanner(
                         adUnitId = AdManager.BANNER_AD_UNIT_ID
                         loadAd(AdRequest.Builder().build())
                     }
-                } catch (e: Exception) {
+                } catch (t: Throwable) {
                     // If AdView fails to create, return an empty view
                     android.view.View(context)
                 }

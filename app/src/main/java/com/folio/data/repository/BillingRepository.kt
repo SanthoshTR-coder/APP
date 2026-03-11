@@ -52,8 +52,8 @@ class BillingRepository @Inject constructor() {
                     Log.d(TAG, "Billing service disconnected")
                 }
             })
-        } catch (e: Exception) {
-            Log.e(TAG, "Billing initialization failed", e)
+        } catch (t: Throwable) {
+            Log.e(TAG, "Billing initialization failed", t)
         }
     }
 

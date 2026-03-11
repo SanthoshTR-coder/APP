@@ -181,7 +181,7 @@ fun FolioTheme(
                     isAppearanceLightStatusBars = !darkTheme
                     isAppearanceLightNavigationBars = !darkTheme
                 }
-            } catch (_: Exception) {
+            } catch (_: Throwable) {
                 // Fail silently — edge-to-edge already handles most of this
             }
         }

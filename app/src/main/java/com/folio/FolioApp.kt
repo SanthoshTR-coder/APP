@@ -12,8 +12,8 @@ class FolioApp : Application() {
         // Initialize AdMob SDK early (safe to call before Activity)
         try {
             MobileAds.initialize(this) {}
-        } catch (e: Exception) {
-            Log.e("FolioApp", "AdMob initialization failed", e)
+        } catch (t: Throwable) {
+            Log.e("FolioApp", "AdMob initialization failed", t)
         }
     }
 }
